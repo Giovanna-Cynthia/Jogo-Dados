@@ -34,13 +34,14 @@ restartScore.addEventListener('click', () => {
   document.getElementById('current--0').textContent = currentScore;
   document.getElementById('current--1').textContent = currentScore;
 });
+
 //A função holdDice vai pegar o valor do current-score e ira somar para o valor do score
 holdDice.addEventListener('click', () => {
   totalScore[activePlayer] += currentScore;
   document.getElementById(`score--${activePlayer}`).textContent =
     totalScore[activePlayer];
   // Se o valor do totalScore do player for equivalente a 100, ele ira declarar o jogador vencedor
-  if (scores[activePlayer] >= 100) {
+  if (totalScore[activePlayer] >= 100) {
     // Se a pontuação total do jogador ativo for maior ou igual a 100
     playing = false; // Finalizar o jogo
     document.querySelector('.dice').style.display = 'none'; // Ocultar o elemento do dado
@@ -57,7 +58,8 @@ holdDice.addEventListener('click', () => {
     switchPlayer(); // Alternar para o próximo jogador
   }
 });
-//
+
+// Função para alternar os jogadores
 function switchPlayer() {
   document.getElementById(`current--${activePlayer}`).textContent =
     currentScore;
@@ -69,7 +71,7 @@ function switchPlayer() {
   document.getElementById('current--0').textContent = currentScore;
   document.getElementById('current--1').textContent = currentScore;
 
-  //Declara onde os valores dos score seram atribuidos impossibilitando o valor ser atribuido errado
+  // Declara onde os valores dos score seram atribuidos impossibilitando o valor ser atribuido errado
   document.querySelector('.player--0').classList.toggle('player--active');
   document.querySelector('.player--1').classList.toggle('player--active');
 }
